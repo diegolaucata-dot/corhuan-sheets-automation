@@ -10,7 +10,9 @@ function cargarMapaBase() {
     });
     return mapa;
   } catch (error) {
-    console.error("Error en cargarMapaBase: " + error.message);
+    const msg = "Error en cargarMapaBase: " + error.message;
+    console.error(msg);
+    registrarError(msg);
     return {};
   }
 }
@@ -31,7 +33,9 @@ function cargarHorasSueño() {
     }
     return mapa;
   } catch (error) {
-    console.error("Error en cargarHorasSueño: " + error.message);
+    const msg = "Error en cargarHorasSueño: " + error.message;
+    console.error(msg);
+    registrarError(msg);
     return {};
   }
 }
@@ -51,7 +55,9 @@ function cargarHorarios(hojaNombre, columnaFecha = 4, columnaHora = 5) {
     });
     return mapa;
   } catch (error) {
-    console.error(`Error en cargarHorarios (${hojaNombre}): ` + error.message);
+    const msg = `Error en cargarHorarios (${hojaNombre}): ` + error.message;
+    console.error(msg);
+    registrarError(msg);
     return {};
   }
 }

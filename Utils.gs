@@ -49,3 +49,23 @@ function validarDNI(dni) {
   if (!dni || typeof dni !== 'string') return false;
   return /^\d{8}$/.test(dni.trim());
 }
+
+/**
+ * Registra un error en la hoja LOG (la crea si no existe).
+ * @param {string} mensaje - Descripción del error.
+ */
+function registrarError(mensaje) {
+  try {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    let logHoja = ss.getSheetByName("LOG");
+    if (!logHoja) {
+      logHoja = ss.insertSheet("LOG");
+      logHoja.getRange("A1:C1").setValues([["Timestamp", "Función", "Mensaje"]]);
+    }
+    const ahora = new Date();
+    const funcion = registrarError.caller ? registrarError.caller.name : "desconocida";
+    logHoja.appendRow([ahora, funcion, mensaje]);
+  } catch (e) {
+    console.error("No se pudo registrar error en hoja LOG: " + e.message);
+  }
+}
