@@ -1,7 +1,7 @@
 function actualizarFormatoCompleto() {
   const hojaFormato = getHoja(CONFIG.HOJAS.FORMATO);
   const mapaBase = cargarMapaBase();
-  const mapaHS = cargarHorasSueño();
+  const mapaHS = cargarHorasSueno();
   const mapaAyer = cargarHorarios(CONFIG.HOJAS.AYER);
   const mapaHoy = cargarHorarios(CONFIG.HOJAS.HOY);
 
@@ -15,11 +15,11 @@ function actualizarFormatoCompleto() {
         continue;
       }
       hojaFormato.getRange(fila, 3).setValue(mapaBase[dni] || "");
-      const celdaSueño = hojaFormato.getRange(fila, 10);
+      const celdaSueno = hojaFormato.getRange(fila, 10);
       if (mapaHS[dni]) {
-        celdaSueño.setFormula(`="${minutosAHHMM(mapaHS[dni])}"`);
+        celdaSueno.setFormula(`="${minutosAHHMM(mapaHS[dni])}"`);
       } else {
-        celdaSueño.setValue("0:00");
+        celdaSueno.setValue("0:00");
       }
       const celdaInicio = hojaFormato.getRange(fila, 7);
       if (mapaAyer[dni]) {

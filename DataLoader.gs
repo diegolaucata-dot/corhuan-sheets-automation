@@ -17,7 +17,7 @@ function cargarMapaBase() {
   }
 }
 
-function cargarHorasSueño() {
+function cargarHorasSueno() {
   try {
     const hoja = getHoja(CONFIG.HOJAS.HS);
     const datos = hoja.getDataRange().getValues();
@@ -33,7 +33,7 @@ function cargarHorasSueño() {
     }
     return mapa;
   } catch (error) {
-    const msg = "Error en cargarHorasSueño: " + error.message;
+    const msg = "Error en cargarHorasSueno: " + error.message;
     console.error(msg);
     registrarError(msg);
     return {};
