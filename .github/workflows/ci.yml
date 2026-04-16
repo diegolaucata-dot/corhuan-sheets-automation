@@ -1,0 +1,33 @@
+name: CI - Verificar archivos .gs
+
+on:
+  push:
+    branches: [ develop, main ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verificar que los archivos .gs no tengan caracteres no ASCII
+        run: |
+          for file in *.gs; do
+            echo "Revisando $file ..."
+            if grep -P '[^\x00-\x7F]' "$file"; then
+              echo "❌ $file contiene caracteres no ASCII (posiblemente RTF)"
+              exit 1
+            fi
+          done
+          echo "✅ Todos los archivos .gs están en texto plano"
+      - name: Verificar que existan los archivos principales
+        run: |
+          archivos_requeridos=("Config.gs" "Utils.gs" "DataLoader.gs" "Formatter.gs" "OnEdit.gs" "Print.gs" "Menu.gs")
+          for archivo in "${archivos_requeridos[@]}"; do
+            if [ ! -f "$archivo" ]; then
+              echo "❌ Falta el archivo $archivo"
+              exit 1
+            fi
+          done
+          echo "✅ Todos los archivos requeridos existen"
