@@ -1,5 +1,3 @@
-
-cat > Utils.gs << 'EOF'
 /**
  * Obtiene una hoja por nombre, lanza error si no existe.
  * @param {string} nombre - Nombre de la hoja.
