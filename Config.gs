@@ -1,4 +1,4 @@
-// Configuración global del proyecto
+// Configuracin global del proyecto
 const CONFIG = {
   HOJAS: {
     FORMATO: "FORMATO",
