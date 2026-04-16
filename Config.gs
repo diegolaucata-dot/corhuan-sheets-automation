@@ -1,7 +1,7 @@
 // Configuración global del proyecto
 const CONFIG = {
   HOJAS: {
-    FORMATO: "FORMATO_V2",
+    FORMATO: "FORMATO",
     BASE: "BASE",
     HS: "HS",
     AYER: "AYER",
